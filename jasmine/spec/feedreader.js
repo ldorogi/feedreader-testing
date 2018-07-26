@@ -31,7 +31,7 @@ $(function() {
          * in the allFeeds object and ensures it has a URL defined
          * and that the URL is not empty.
          */
-         it('has an URL', function() {
+         it('have an URL', function() {
             for(let feed of allFeeds) {
                 expect(feed.url).toBeDefined();
                 expect(feed.url.length).not.toBe(0);
@@ -42,7 +42,7 @@ $(function() {
          * in the allFeeds object and ensures it has a name defined
          * and that the name is not empty.
          */
-         it('has a name', function() {
+         it('have a name', function() {
             for(let feed of allFeeds) {
                 expect(feed.name).toBeDefined();
                 expect(feed.name.length).not.toBe(0);
@@ -51,20 +51,35 @@ $(function() {
     });
 
 
-    /* TODO: Write a new test suite named "The menu" */
+    /* Test suite  "The menu" */
+    describe('The menu', function() {
 
-        /* TODO: Write a test that ensures the menu element is
-         * hidden by default. You'll have to analyze the HTML and
-         * the CSS to determine how we're performing the
-         * hiding/showing of the menu element.
+        /* This test ensures the menu element is
+         * hidden by default. 
+         * Hiding/showing of the menu element is realised with class menu-hidden.
+         * So we check if the body has this class.
          */
+        it('is hidden by default', function() {
+            expect($('body').hasClass('menu-hidden')).toBe(true);
+        });
 
-         /* TODO: Write a test that ensures the menu changes
+         /* This test ensures the menu changes
           * visibility when the menu icon is clicked. This test
           * should have two expectations: does the menu display when
           * clicked and does it hide when clicked again.
           */
-
+        it('changes visibility when the menu icon is clicked', function() {
+            // first click on menu icon
+            $('.menu-icon-link').click();
+            // check te state of menu - expected is to be visible (has no class of 'menu-hidden')
+            expect($('body').hasClass('menu-hidden')).toBe(false);
+            // second click on menu icon
+            $('.menu-icon-link').click();
+            // check te state of menu - expected is to be hidden (has the class of 'menu-hidden')
+            expect($('body').hasClass('menu-hidden')).toBe(true);
+        });
+    });
+          
     /* TODO: Write a new test suite named "Initial Entries" */
 
         /* TODO: Write a test that ensures when the loadFeed
